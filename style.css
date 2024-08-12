@@ -1,0 +1,18 @@
+.chipi{
+    text-align: center;
+    box-shadow: 0px 0px 30px;
+    border-radius: 30px;
+    margin-left: 700px;
+    width: 500px;
+    height: 350px;
+    color: rgb(106, 48, 153);
+}
+.x{
+    text-align: center;
+     margin-left: 75px;
+     margin-right: 75px;
+}
+input{
+    /* deixar o lugar de escrever redondo */
+    border-radius: 8px;
+}

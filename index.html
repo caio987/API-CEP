@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> CEP </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="chipi">
+            <h1 class="algo"> API-CEP </h1>
+    
+    <form action="" class="bloco">
+        <fieldset class="x" style="border-radius: 30px;">
+            <legend> Endereço </legend>
+            <label for=""> CEP </label>
+            <input type="text" name="" id="cep">
+            <br><br>
+            <label for=""> Rua </label>
+            <input type="text" readonly id="rua">
+            <br><br>
+            <label for=""> Número </label>
+            <input type="number" name="" id="numero">
+            <br><br>
+            <label for=""> Bairro </label>
+            <input type="text" readonly id="bairro">
+            <br><br>
+            <label for=""> Cidade </label>
+            <input type="text" readonly id="cidade">
+            <br><br>
+            <label for=""> Estado </label>
+            <input type="text" readonly id="estado">
+        </fieldset>
+    </form>
+
+    <script>
+        //preencher os inputs com arrow fuctions
+        const preencherformulario = (endereco) => {
+            document.getElementById('rua').value = endereco.logradouro
+            document.getElementById('bairro').value = endereco.bairro
+            document.getElementById('cidade').value = endereco.localidade
+            document.getElementById('estado').value = endereco.uf
+        } 
+        //autopreenchimento
+        const cepValido = (cep) => {
+            if(cep.length == 8) {
+                return true;
+                } else {
+                    return false;
+                }
+            }
+
+            //buscar a API
+            const pesquisarCEP = async () => {
+                const cep = document.getElementById('cep').value;
+                const url = `https://viacep.com.br/ws/${cep}/json/`
+                if(cepValido(cep)) {
+                    const dados = await fetch(url);
+                    const endereco = await dados.json();
+                        preencherformulario(endereco);
+                }
+            }
+            document.getElementById('cep').addEventListener("focusout" , pesquisarCEP)
+    </script>
+</body>
+</html>
